@@ -19,7 +19,7 @@ cityCoords = {
 
 def distance(path):
     dist = 0
-    for i in range(0, len(path)-2):
+    for i in range(0, len(path)-1):
         dist = dist + calcDist(cityCoords[path[i]], cityCoords[path[i+1]])
     dist = dist + calcDist(cityCoords[path[0]], cityCoords[path[len(path)-1]])
     return dist
