@@ -26,6 +26,7 @@ class Chromosome:
     def __init__(self):
         self.path = random.sample(range(1,10), 9)
         self.dist = self.distance()
+        self.fitness = self.evalFitness()
 
 
     # calculate distance of a path
@@ -42,32 +43,15 @@ class Chromosome:
         dist = math.sqrt(math.pow(coord1[0] - coord2[0],2) + math.pow(coord1[1] - coord2[1],2))
         return dist
 
+    def evalFitness(self):
+        return 50.0/self.dist
+
 if __name__ == "__main__":
+    
+    # generating our population of size n
 
     n = 10000
-
     population = []
 
-    for i in range(0, n+1):
+    for i in range(0, n):
         population.append(Chromosome())
-    mindist = 90.0
-    minpath = []
-    for i in range(len(population)):
-        if population[i].dist < mindist:
-            mindist = population[i].dist
-            minpath = population[i].path
-        print 'Current chromosome: ', population[i].path, 'Distance: ', population[i].dist
-    print 'Min path: ', minpath, 'Distance: ', mindist
-
-
-
-
-
-
-
-
-
-
-
-
-
