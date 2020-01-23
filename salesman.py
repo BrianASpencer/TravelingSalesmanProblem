@@ -44,14 +44,46 @@ class Chromosome:
         return dist
 
     def evalFitness(self):
-        return 50.0/self.dist
+        return 46.0/self.dist
 
 if __name__ == "__main__":
+
+    #https://new.hindawi.com/journals/cin/2017/7430125/
     
-    # generating our population of size n
+    def mutate():
+    
+    def crossover():
+    
+    def repopulate():
 
-    n = 10000
+    populationSize = 0
+    generations = 5
+    minFitness = 1.0
     population = []
+    parents = []
+    flag = False
+    cnt = 0
+    for j in range(0, generations):
+        for i in range(0, populationSize):
+            population.append(Chromosome())
+            print(population[i])
+            if population[i].fitness > minFitness:
+                parents.append(population[i])
+        if len(parents)/(len(population)*1.0) < 0.45:
+            generations = generations + 1
+            flag = True
+        elif len(parents)/(len(population)*1.0) > 0.55:
+            minFitness = minFitness + 0.1
+            generations = generations + 1
+            flag = True
+        else:
 
-    for i in range(0, n):
-        population.append(Chromosome())
+        if flag:
+            parents = []
+            flag = False
+
+
+    test1 = [1,2]
+    test2 = [5,4,3,2,1]
+    test1 = test2
+    print(test1)
