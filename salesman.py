@@ -53,25 +53,25 @@ class Chromosome:
 
 def crossover(p1, p2):
     c1 = p1[3:6]
-    c2 = p2[3:6]
-    child = [0,0,0,0,0,0,0,0,0]
-    index = 0
+    child = []
+    path = []
     cnt = 0
     cnt2 = 0
     for i in range(3, len(p1)+3):
         for j in range(0, len(c1)):
             if p2[i%9] == c1[j]:
                 cnt = cnt + 1
-        if index > 2 and index < 6:
-            print('yee')
-            child[index] = c1[cnt2]
-            cnt2 = cnt2 + 1
-            index = index + 1
-        if cnt > 0:
-            cnt = 0
+        if cnt == 0:
+            path.append(p2[i%9])
+        cnt = 0
+    
+    for i in range(0, 9):
+        if i < 3:
+            child.append(path[i])
+        elif i < 6:
+            child.append(c1[i-3])
         else:
-            child[index] = p2[i%9]
-            index = index + 1
+            child.append(path[i-3])
     
     return child
 
