@@ -45,16 +45,22 @@ class Chromosome:
 
     def evalFitness(self):
         return 46.0/self.dist
+    
+    def mutate(self):
+        roll = random.sample(range(1,1000), 1)
+        if roll[0] == 1:
+            self.path = random.sample(range(1,10), 9)
+
+def crossover(p1, p2):
+    
 
 if __name__ == "__main__":
 
     #https://new.hindawi.com/journals/cin/2017/7430125/
     
-    def mutate():
+    #def crossover():
     
-    def crossover():
-    
-    def repopulate():
+    #def repopulate():
 
     populationSize = 0
     generations = 5
