@@ -79,11 +79,9 @@ if __name__ == "__main__":
 
     #https://new.hindawi.com/journals/cin/2017/7430125/
     
-    #def crossover():
-    
     #def repopulate():
 
-    populationSize = 0
+    populationSize = 10000
     generations = 5
     minFitness = 1.0
     population = []
@@ -104,13 +102,37 @@ if __name__ == "__main__":
             generations = generations + 1
             flag = True
         else:
+            while (len(newpopulation) < 10000)
 
         if flag:
             parents = []
             flag = False
 
+    """ This code generates a parent population
+    populationSize = 100
+    generations = 5
+    minFitness = 1.0
+    population = []
+    parents = []
+    
+    for i in range(0, populationSize):
+        population.append(Chromosome())
+    cnt = 0
+    while (cnt < 50):
+        for i in range(0, len(population)):
+            if population[i].fitness > minFitness:
+                parents.append(population[i])
+            if len(parents) == 50:
+                break
+        cnt = len(parents)
+            
+    for i in range(0, len(parents)):
+        print(parents[i].fitness, i)
+    """
 
-    test1 = [1,2]
-    test2 = [5,4,3,2,1]
-    test1 = test2
-    print(test1)
+
+    #general process
+    #1. we choose fittest half of population to compose new population
+    #2. we breed them to form children (and add that onto newe population)
+    #3. we repopulate with random ones to origninal popualation length
+    #4. do at til we got a satisfactory result
