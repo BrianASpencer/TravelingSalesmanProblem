@@ -8,7 +8,7 @@ import random
 
 class Chromosome:
     path = []
-    dist = 90.0
+    dist = 0.0
 
     cityCoords = {
       1: [1,1],
@@ -81,52 +81,83 @@ if __name__ == "__main__":
     
     #def repopulate():
 
-    populationSize = 10000
+    populationSize = 15000
     generations = 5
     minFitness = 1.0
     population = []
     parents = []
-    flag = False
-    cnt = 0
-    for j in range(0, generations):
+    gen = 0
+    
+    while (gen < generations):
         for i in range(0, populationSize):
             population.append(Chromosome())
-            print(population[i])
-            if population[i].fitness > minFitness:
-                parents.append(population[i])
-        if len(parents)/(len(population)*1.0) < 0.45:
-            generations = generations + 1
-            flag = True
-        elif len(parents)/(len(population)*1.0) > 0.55:
-            minFitness = minFitness + 0.1
-            generations = generations + 1
-            flag = True
-        else:
-            while (len(newpopulation) < 10000)
+        cnt = 0
+        while (cnt < populationSize//2):
+            for i in range(0, len(population)):
+                if population[i].fitness > minFitness:
+                    parents.append(population[i])
+                if len(parents) == populationSize//2:
+                    break
+            cnt = len(parents)
 
-        if flag:
-            parents = []
-            flag = False
+        n = len(parents)
+        for i in range(0, len(parents), 2):
+            npath = crossover(parents[i].path, parents[i+1].path)
+            parents.append(Chromosome())
+            parents[n].path = list(npath)
+            n = n + 1
+
+        for i in range(0, populationSize//4):
+            parents.append(Chromosome())
+
+        gen = gen + 1
+        minFitness = minFitness + .1
+        population = []
+        cnt = populationSize - 1
+        while (cnt > 0):
+            population.append(parents[cnt])
+            parents.remove(parents[cnt])
+            cnt = cnt - 1
+        population.append(parents[0])
+            
+    length = 40.0
+    pathy = []
+    for i in range(0, populationSize):
+        if population[i].dist < length:
+            length = population[i].dist
+            pathy = population[i].path
+
+        print(population[i].fitness, i)
+
+    print('path: ', pathy)
+    print('length: ', length)
+
+
+
 
     """ This code generates a parent population
-    populationSize = 100
-    generations = 5
-    minFitness = 1.0
-    population = []
-    parents = []
-    
     for i in range(0, populationSize):
         population.append(Chromosome())
     cnt = 0
-    while (cnt < 50):
+    while (cnt < populationSize//2):
         for i in range(0, len(population)):
             if population[i].fitness > minFitness:
                 parents.append(population[i])
-            if len(parents) == 50:
+            if len(parents) == populationSize//2:
                 break
         cnt = len(parents)
-            
-    for i in range(0, len(parents)):
+
+    n = len(parents)
+    for i in range(0, len(parents), 2):
+        npath = crossover(parents[i].path, parents[i+1].path)
+        parents.append(Chromosome())
+        parents[n].path = list(npath)
+        n = n + 1
+
+    for i in range(0, populationSize//4):
+        parents.append(Chromosome())
+    print(len(parents))
+    for i in range(0, populationSize):
         print(parents[i].fitness, i)
     """
 
