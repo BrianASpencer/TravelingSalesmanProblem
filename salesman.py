@@ -1,6 +1,9 @@
 import math
 import random
 
+# Brian Spencer
+# CSC 320
+
 # a population is a collection or list of chromosomes
 # population = [chromosome0, chromosome1, ..., chromosome9999]
 # chromosome has components of path, distance, distance normalized, etc.
@@ -81,8 +84,8 @@ if __name__ == "__main__":
     
     #def repopulate():
 
-    populationSize = 15000
-    generations = 5
+    populationSize = 10000
+    generations = 6
     minFitness = 1.0
     population = []
     parents = []
@@ -122,44 +125,20 @@ if __name__ == "__main__":
             
     length = 40.0
     pathy = []
+    cnt = 0
     for i in range(0, populationSize):
         if population[i].dist < length:
             length = population[i].dist
-            pathy = population[i].path
+            pathy = population[i].path    
+        oof = population[i].fitness
+        if oof >= 1.5001483713921:
+            cnt = cnt + 1
 
-        print(population[i].fitness, i)
-
-    print('path: ', pathy)
-    print('length: ', length)
-
-
-
-
-    """ This code generates a parent population
-    for i in range(0, populationSize):
-        population.append(Chromosome())
-    cnt = 0
-    while (cnt < populationSize//2):
-        for i in range(0, len(population)):
-            if population[i].fitness > minFitness:
-                parents.append(population[i])
-            if len(parents) == populationSize//2:
-                break
-        cnt = len(parents)
-
-    n = len(parents)
-    for i in range(0, len(parents), 2):
-        npath = crossover(parents[i].path, parents[i+1].path)
-        parents.append(Chromosome())
-        parents[n].path = list(npath)
-        n = n + 1
-
-    for i in range(0, populationSize//4):
-        parents.append(Chromosome())
-    print(len(parents))
-    for i in range(0, populationSize):
-        print(parents[i].fitness, i)
-    """
+    print('Path: ', pathy)
+    print('Population size: ', populationSize)
+    print('Number of generations: ', gen)
+    print('Distance of shortest path: ', length)
+    print('Proportion with same distance: ', cnt/len(population))
 
 
     #general process
